@@ -5,7 +5,7 @@ Playwright + TypeScript automation for the Senior QA Engineer take-home challeng
 ## What's here
 
 - `docs/test-plan.md`: scope, approach, risks, entry/exit criteria, environment requirements
-- `docs/test-scenarios.md`: Gherkin scenarios (positive, negative, edge cases)
+- `docs/test-scenarios.md`: Gherkin scenarios (positive, negative, edge cases) plus one manual test case
 - `pages/`: Page Object Model for login, inventory, cart and checkout
 - `fixtures/credentials.ts`: reads test credentials from environment variables
 - `tests/ui/`: Playwright specs for the browser flow, `tests/api/` for API-level checks
@@ -46,6 +46,10 @@ Running 48 tests using 3 workers (chromium, firefox, webkit)
 ```
 
 A CI run (GitHub Actions) with a status badge pointing at this repo is next on the list.
+
+## Manual testing note
+
+While exploring the checkout flow by hand, an empty cart turned out to still be checkout-able: going straight to `/cart.html` with zero items, clicking "Checkout", filling in customer info and finishing the order all succeed, ending on "Thank you for your order!" with a total of $0.00. Nothing in the UI blocks it. It's documented as a manual test case in `docs/test-scenarios.md` rather than automated, since it's a business-logic gap worth a human judgment call (should an empty order even be allowed to complete?) more than a scripted assertion.
 
 ## Assumptions and limitations
 
