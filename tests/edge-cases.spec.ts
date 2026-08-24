@@ -43,11 +43,14 @@ test.describe('Edge cases', () => {
 
     await expect(inventoryPage.cartBadge).toHaveText('3');
   });
+
 });
 
 test('an unauthenticated session cannot reach the inventory page directly', async ({ page }) => {
   await page.goto('/inventory.html');
 
+  // SauceDemo redirects straight back to the login page rather than
+  // rendering the error on the /inventory.html URL itself.
+  await expect(page).toHaveURL('https://www.saucedemo.com/');
   await expect(page.locator('[data-test="error"]')).toContainText('You can only access');
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 });
