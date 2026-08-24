@@ -1,0 +1,16 @@
+{
+  "name": "blackthorn-qa-challenge",
+  "version": "1.0.0",
+  "description": "Senior QA Engineer Challenge - E-Commerce Platform Testing (saucedemo.com)",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.5.0",
+    "typescript": "^5.5.4"
+  }
+}
