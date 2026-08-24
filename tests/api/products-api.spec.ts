@@ -7,8 +7,10 @@ import { test, expect } from '@playwright/test';
  * checks you'd run against a real product catalog service.
  */
 test.describe('Product catalog API', () => {
+  test.use({ baseURL: 'https://fakestoreapi.com' });
+
   test('GET /products returns a non-empty list with the expected shape', async ({ request }) => {
-    const response = await request.get('https://fakestoreapi.com/products');
+    const response = await request.get('/products');
 
     expect(response.status()).toBe(200);
 
@@ -24,7 +26,7 @@ test.describe('Product catalog API', () => {
   });
 
   test('GET /products/:id returns a single matching product', async ({ request }) => {
-    const response = await request.get('https://fakestoreapi.com/products/1');
+    const response = await request.get('/products/1');
 
     expect(response.status()).toBe(200);
 
@@ -34,7 +36,7 @@ test.describe('Product catalog API', () => {
   });
 
   test('GET /products/:id returns 404 shape for a non-existent id gracefully', async ({ request }) => {
-    const response = await request.get('https://fakestoreapi.com/products/999999');
+    const response = await request.get('/products/999999');
 
     // Fake Store API returns 200 with an empty body for unknown ids rather
     // than a 404; asserting on that quirk instead of assuming REST
