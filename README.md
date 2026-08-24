@@ -7,6 +7,7 @@ Playwright + TypeScript automation for the Senior QA Engineer take-home challeng
 - `docs/test-plan.md`: scope, approach, risks, entry/exit criteria, environment requirements
 - `docs/test-scenarios.md`: Gherkin scenarios (positive, negative, edge cases)
 - `pages/`: Page Object Model for login, inventory, cart and checkout
+- `fixtures/credentials.ts`: reads test credentials from environment variables
 - `tests/ui/`: Playwright specs for the browser flow, `tests/api/` for API-level checks
 - `playwright.config.ts`: cross-browser config (Chromium, Firefox, WebKit)
 
@@ -15,6 +16,7 @@ Playwright + TypeScript automation for the Senior QA Engineer take-home challeng
 ```bash
 npm install
 npx playwright install --with-deps
+cp .env.example .env   # then fill in real values, see .env.example for details
 ```
 
 ## Run tests
@@ -49,5 +51,6 @@ A CI run (GitHub Actions) with a status badge pointing at this repo is next on t
 
 - SauceDemo doesn't expose a public API, so the API suite (`tests/api/products-api.spec.ts`) exercises a public product-catalog API (Fake Store API) instead, to demonstrate API-level test design with Playwright's request context. It's a substitute, not a test of SauceDemo itself.
 - `InventoryPage`/`CartPage` build selectors from the product name (e.g. `Sauce Labs Backpack` → `add-to-cart-sauce-labs-backpack`), matching SauceDemo's `data-test` naming convention. This holds for every product used in the tests but isn't guaranteed for catalog items with punctuation in the name.
-- Tests assume the seeded demo accounts (`standard_user`, `locked_out_user`, password `secret_sauce` for both) stay available and unchanged, since there's no way to provision test data on a public demo site.
+- Credentials come from environment variables (`fixtures/credentials.ts`), not hardcoded strings. These happen to be SauceDemo's own public demo accounts, but they're treated as real secrets on principle, since this is exactly where actual credentials would live on a real project.
+- Tests assume the seeded demo accounts (`standard_user`, `locked_out_user`) stay available and unchanged, since there's no way to provision test data on a public demo site.
 - No CI pipeline is included. `retries` and `workers` in `playwright.config.ts` are gated on `process.env.CI` so the suite behaves the same locally and would need minimal changes to run in one (GitHub Actions, etc.).

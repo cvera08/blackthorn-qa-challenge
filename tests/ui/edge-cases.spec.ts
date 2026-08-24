@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
-import { CartPage } from '../pages/CartPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { InventoryPage } from '../../pages/InventoryPage';
+import { CartPage } from '../../pages/CartPage';
+import { STANDARD_USERNAME, STANDARD_PASSWORD } from '../../fixtures/credentials';
 
 test.describe('Edge cases', () => {
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.login(STANDARD_USERNAME, STANDARD_PASSWORD);
   });
 
   test('cart page shows no items and no badge when nothing was added', async ({ page }) => {
@@ -43,7 +44,6 @@ test.describe('Edge cases', () => {
 
     await expect(inventoryPage.cartBadge).toHaveText('3');
   });
-
 });
 
 test('an unauthenticated session cannot reach the inventory page directly', async ({ page }) => {

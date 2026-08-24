@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
-import { CartPage } from '../pages/CartPage';
-import { CheckoutPage } from '../pages/CheckoutPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { InventoryPage } from '../../pages/InventoryPage';
+import { CartPage } from '../../pages/CartPage';
+import { CheckoutPage } from '../../pages/CheckoutPage';
+import { STANDARD_USERNAME, STANDARD_PASSWORD } from '../../fixtures/credentials';
 
 const PRODUCT = 'Sauce Labs Backpack';
 
@@ -10,7 +11,7 @@ test.describe('Cart and checkout', () => {
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.login(STANDARD_USERNAME, STANDARD_PASSWORD);
     await expect(page).toHaveURL(/inventory\.html/);
   });
 
