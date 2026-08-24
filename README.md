@@ -33,6 +33,18 @@ npx playwright test tests/login.spec.ts
 npx playwright test --project=chromium
 ```
 
+## Local test run
+
+```
+$ npx playwright test
+
+Running 48 tests using 3 workers (chromium, firefox, webkit)
+
+  48 passed (20.3s)
+```
+
+A CI run (GitHub Actions) with a status badge pointing at this repo is next on the list.
+
 ## Assumptions and limitations
 
 - SauceDemo doesn't expose a public API, so the API suite (`tests/api/products-api.spec.ts`) exercises a public product-catalog API (Fake Store API) instead, to demonstrate API-level test design with Playwright's request context. It's a substitute, not a test of SauceDemo itself.
