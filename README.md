@@ -32,7 +32,8 @@ Run a single file or browser:
 
 ```bash
 npx playwright test tests/ui/login.spec.ts
-npx playwright test --project=chromium
+npx playwright test --project=chromium   # UI only, one browser
+npx playwright test --project=api        # API checks only
 ```
 
 ## Local test run
@@ -40,9 +41,9 @@ npx playwright test --project=chromium
 ```
 $ npx playwright test
 
-Running 48 tests using 3 workers (chromium, firefox, webkit)
+Running 42 tests using 4 workers (chromium, firefox, webkit, api)
 
-  48 passed (20.3s)
+  42 passed (18.0s)
 ```
 
 A CI run (GitHub Actions) with a status badge pointing at this repo is next on the list.

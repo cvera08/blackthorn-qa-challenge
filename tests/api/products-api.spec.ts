@@ -5,10 +5,11 @@ import { test, expect } from '@playwright/test';
  * e-commerce API (Fake Store API) using Playwright's request context, as
  * allowed by the challenge brief. It stands in for the kind of contract
  * checks you'd run against a real product catalog service.
+ *
+ * baseURL comes from the "api" project in playwright.config.ts, so any new
+ * spec added to this folder picks it up automatically, no per-file setup.
  */
 test.describe('Product catalog API', () => {
-  test.use({ baseURL: 'https://fakestoreapi.com' });
-
   test('GET /products returns a non-empty list with the expected shape', async ({ request }) => {
     const response = await request.get('/products');
 

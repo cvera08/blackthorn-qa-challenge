@@ -17,15 +17,26 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Safari'] },
+    },
+    {
+      // API checks don't need a browser, so they get their own project
+      // instead of running once per browser above. Any new spec added
+      // under tests/api/ picks up this baseURL automatically.
+      name: 'api',
+      testDir: './tests/api',
+      use: { baseURL: 'https://fakestoreapi.com' },
     },
   ],
 });
