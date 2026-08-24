@@ -7,7 +7,7 @@ Playwright + TypeScript automation for the Senior QA Engineer take-home challeng
 - `docs/test-plan.md`: scope, approach, risks, entry/exit criteria, environment requirements
 - `docs/test-scenarios.md`: Gherkin scenarios (positive, negative, edge cases)
 - `pages/`: Page Object Model for login, inventory, cart and checkout
-- `tests/`: Playwright specs (UI) plus `tests/api/` for API-level checks
+- `tests/ui/`: Playwright specs for the browser flow, `tests/api/` for API-level checks
 - `playwright.config.ts`: cross-browser config (Chromium, Firefox, WebKit)
 
 ## Install dependencies
@@ -29,7 +29,7 @@ npx playwright show-report       # open the HTML report from the last run
 Run a single file or browser:
 
 ```bash
-npx playwright test tests/login.spec.ts
+npx playwright test tests/ui/login.spec.ts
 npx playwright test --project=chromium
 ```
 
