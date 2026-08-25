@@ -103,4 +103,4 @@ Found while exploring the checkout flow by hand, not automated (see the README's
 | **Steps** | 1. Go directly to the cart page (`/cart.html`)<br>2. Click "Checkout" with 0 items in the cart<br>3. Fill in first name, last name and postal code, continue<br>4. Click "Finish" |
 | **Expected** | The app should prevent checkout with no items, or at least warn before placing an empty order |
 | **Actual** | Checkout proceeds through both steps with no warning, order overview shows "Total: $0.00", and the order completes with "Thank you for your order!" |
-| **Severity** | Low. No crash, no data corruption, but a business rule that should exist doesn't |
+| **Severity** | Low on this demo (no crash, no data loss, no real fulfillment behind it). On a production e-commerce site the same gap would rate Medium: a $0.00 order can pollute reporting, trip up fulfillment, and skew order metrics |
