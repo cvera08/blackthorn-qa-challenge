@@ -1,5 +1,7 @@
 # Blackthorn QA Challenge: E-Commerce Platform Testing
 
+[![CI](https://github.com/cvera08/blackthorn-qa-challenge/actions/workflows/ci.yml/badge.svg)](https://github.com/cvera08/blackthorn-qa-challenge/actions/workflows/ci.yml)
+
 Playwright + TypeScript automation for the Senior QA Engineer take-home challenge, testing [saucedemo.com](https://www.saucedemo.com).
 
 ## What's here
@@ -48,7 +50,7 @@ Running 42 tests using 4 workers (chromium, firefox, webkit, api)
   42 passed (18.0s)
 ```
 
-A CI run (GitHub Actions) with a status badge pointing at this repo is next on the list.
+CI runs the same suite on every push via GitHub Actions (`.github/workflows/ci.yml`): UI tests across all three browsers and API tests in a separate job. The badge above reflects the latest run.
 
 ## Manual testing note
 
