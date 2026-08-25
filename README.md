@@ -58,7 +58,7 @@ While exploring the checkout flow by hand, an empty cart turned out to still be 
 
 ## Assumptions and limitations
 
-- SauceDemo doesn't expose a public API, so the API suite (`tests/api/products-api.spec.ts`) exercises a public product-catalog API (Fake Store API) instead, to demonstrate API-level test design with Playwright's request context. It's a substitute, not a test of SauceDemo itself.
+- SauceDemo doesn't expose a public API, so the API suite (`tests/api/products-api.spec.ts`) exercises a public product-catalog API (Fake Store API) instead, to demonstrate API-level test design with Playwright's request context. It's a substitute, not a test of SauceDemo itself. Because it's a third party outside our control, the suite self-skips when the API isn't reachable (for example, CI runner IPs get a 403), so an outage there never fails the build. It runs and asserts fully in any environment that can reach the API, including local.
 - `InventoryPage`/`CartPage` build selectors from the product name (e.g. `Sauce Labs Backpack` → `add-to-cart-sauce-labs-backpack`), matching SauceDemo's `data-test` naming convention. This holds for every product used in the tests but isn't guaranteed for catalog items with punctuation in the name.
 - Credentials come from environment variables (`fixtures/credentials.ts`), not hardcoded strings. These happen to be SauceDemo's own public demo accounts, but they're treated as real secrets on principle, since this is exactly where actual credentials would live on a real project.
 - Tests assume the seeded demo accounts (`standard_user`, `locked_out_user`) stay available and unchanged, since there's no way to provision test data on a public demo site.
