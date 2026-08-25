@@ -22,18 +22,20 @@ cp .env.example .env   # then fill in real values, see .env.example for details
 ## Run tests
 
 ```bash
-npx playwright test              # run everything, headless, all three browsers
-npx playwright test --headed     # watch the browser while it runs
-npx playwright test --ui         # interactive UI mode
-npx playwright show-report       # open the HTML report from the last run
+npm test            # everything: UI across all three browsers + API
+npm run test:ui     # UI suite only (Chromium, Firefox, WebKit)
+npm run test:api    # API checks only
+npm run test:watch  # interactive UI mode
+npm run report      # open the HTML report from the last run
 ```
+
+The UI and API suites are split on purpose: functional sign-off rests on `test:ui`. The API suite hits a third-party service (see limitations), so it's kept separate to keep a UI pass from depending on that service being up.
 
 Run a single file or browser:
 
 ```bash
 npx playwright test tests/ui/login.spec.ts
 npx playwright test --project=chromium   # UI only, one browser
-npx playwright test --project=api        # API checks only
 ```
 
 ## Local test run

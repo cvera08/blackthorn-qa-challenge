@@ -25,7 +25,7 @@ Out of scope for this exercise:
 
 **Integration considerations:** SauceDemo is a self-contained demo app with no real backend to integrate against, so there's no service boundary to test here beyond the browser-to-app interaction itself.
 
-**API validation:** SauceDemo doesn't expose a public API, so a separate suite exercises a public product-catalog API (Fake Store API) using Playwright's request context. This is meant to demonstrate API-level test design, not to validate SauceDemo itself, and is documented as a substitute in the README.
+**API validation:** SauceDemo doesn't expose a public API, so a separate suite exercises a public product-catalog API (Fake Store API) using Playwright's request context. This is meant to demonstrate API-level test design, not to validate SauceDemo itself, and is documented as a substitute in the README. Because that third-party API is outside our control, it runs as its own project (`npm run test:api`) and functional sign-off depends on the UI suite (`npm run test:ui`), not on it.
 
 ## 3. Risk assessment
 
