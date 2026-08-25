@@ -36,7 +36,7 @@ test.describe('Product catalog API', () => {
     expect(product.price).toBeGreaterThan(0);
   });
 
-  test('GET /products/:id returns 404 shape for a non-existent id gracefully', async ({ request }) => {
+  test('GET /products/:id returns an empty response for an unknown product id', async ({ request }) => {
     const response = await request.get('/products/999999');
 
     // Fake Store API returns 200 with an empty body for unknown ids rather
