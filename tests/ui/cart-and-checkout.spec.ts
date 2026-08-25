@@ -54,15 +54,15 @@ test.describe('Cart and checkout', () => {
 
     await inventoryPage.addToCart(PRODUCT);
     await inventoryPage.goToCart();
-    await cartPage.checkoutButton.click();
+    await cartPage.startCheckout();
 
     await checkoutPage.fillCustomerInfo('Carlos', 'Vera', '11300');
-    await checkoutPage.continueButton.click();
+    await checkoutPage.continueToOverview();
 
     await expect(page).toHaveURL(/checkout-step-two\.html/);
     await expect(checkoutPage.summaryTotalLabel).toBeVisible();
 
-    await checkoutPage.finishButton.click();
+    await checkoutPage.finishOrder();
 
     await expect(page).toHaveURL(/checkout-complete\.html/);
     await expect(checkoutPage.completeHeader).toHaveText('Thank you for your order!');
@@ -75,11 +75,11 @@ test.describe('Cart and checkout', () => {
 
     await inventoryPage.addToCart(PRODUCT);
     await inventoryPage.goToCart();
-    await cartPage.checkoutButton.click();
+    await cartPage.startCheckout();
 
     // Postal code left blank on purpose.
     await checkoutPage.fillCustomerInfo('Carlos', 'Vera', '');
-    await checkoutPage.continueButton.click();
+    await checkoutPage.continueToOverview();
 
     await expect(checkoutPage.errorMessage).toContainText('Postal Code is required');
     await expect(page).toHaveURL(/checkout-step-one\.html/);

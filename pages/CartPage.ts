@@ -22,6 +22,10 @@ export class CartPage {
     await this.page.goto('/cart.html');
   }
 
+  async startCheckout() {
+    await this.checkoutButton.click();
+  }
+
   async itemNames(): Promise<string[]> {
     return this.cartItemNames.allTextContents();
   }

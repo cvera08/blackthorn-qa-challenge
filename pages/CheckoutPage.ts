@@ -46,4 +46,12 @@ export class CheckoutPage {
     await this.lastNameInput.fill(lastName);
     await this.postalCodeInput.fill(postalCode);
   }
+
+  async continueToOverview() {
+    await this.continueButton.click();
+  }
+
+  async finishOrder() {
+    await this.finishButton.click();
+  }
 }
